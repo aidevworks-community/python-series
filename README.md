@@ -1,5 +1,3 @@
-# python-series
-python-series
 # Python Series
 
 A comprehensive Python learning series with practical examples and hands-on sessions.
