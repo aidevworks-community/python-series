@@ -572,17 +572,17 @@ from abc import ABC, abstractmethod
 
 class PaymentMethod(ABC):
     """Abstract base class (Interface) for payment methods"""
-    
+
     @abstractmethod
     def process_payment(self, amount):
         """All payment methods must implement this"""
         pass
-    
+
     @abstractmethod
     def validate(self):
         """All payment methods must validate"""
         pass
-    
+
     def get_receipt(self, amount):
         """Concrete method (optional to override)"""
         return f"Receipt: ${amount:.2f} processed"
@@ -590,18 +590,18 @@ class PaymentMethod(ABC):
 
 class CreditCard(PaymentMethod):
     """Credit card payment implementation"""
-    
+
     def __init__(self, card_number, cvv, expiry):
         self.card_number = card_number
         self.cvv = cvv
         self.expiry = expiry
-    
+
     def process_payment(self, amount):
         """Implement abstract method"""
         if self.validate():
             return f"✅ ${amount:.2f} charged to card ****{self.card_number[-4:]}"
         return "❌ Payment failed: Invalid card"
-    
+
     def validate(self):
         """Implement abstract method"""
         # Simple validation
@@ -610,17 +610,17 @@ class CreditCard(PaymentMethod):
 
 class PayPal(PaymentMethod):
     """PayPal payment implementation"""
-    
+
     def __init__(self, email, password):
         self.email = email
         self.password = password
-    
+
     def process_payment(self, amount):
         """Implement abstract method"""
         if self.validate():
             return f"✅ ${amount:.2f} paid via PayPal ({self.email})"
         return "❌ Payment failed: Invalid PayPal account"
-    
+
     def validate(self):
         """Implement abstract method"""
         return "@" in self.email and len(self.password) > 0
@@ -628,17 +628,17 @@ class PayPal(PaymentMethod):
 
 class Cryptocurrency(PaymentMethod):
     """Cryptocurrency payment implementation"""
-    
+
     def __init__(self, wallet_address, coin_type="Bitcoin"):
         self.wallet_address = wallet_address
         self.coin_type = coin_type
-    
+
     def process_payment(self, amount):
         """Implement abstract method"""
         if self.validate():
             return f"✅ ${amount:.2f} paid via {self.coin_type} (wallet: {self.wallet_address[:8]}...)"
         return "❌ Payment failed: Invalid wallet"
-    
+
     def validate(self):
         """Implement abstract method"""
         return len(self.wallet_address) >= 26
@@ -704,17 +704,17 @@ print()
 
 class Shape(ABC):
     """Abstract shape interface"""
-    
+
     @abstractmethod
     def area(self):
         """Calculate area"""
         pass
-    
+
     @abstractmethod
     def perimeter(self):
         """Calculate perimeter"""
         pass
-    
+
     def describe(self):
         """Describe the shape"""
         return f"{self.__class__.__name__}: Area={self.area():.2f}, Perimeter={self.perimeter():.2f}"
@@ -722,44 +722,44 @@ class Shape(ABC):
 
 class Rectangle(Shape):
     """Rectangle implementation"""
-    
+
     def __init__(self, width, height):
         self.width = width
         self.height = height
-    
+
     def area(self):
         return self.width * self.height
-    
+
     def perimeter(self):
         return 2 * (self.width + self.height)
 
 
 class Circle(Shape):
     """Circle implementation"""
-    
+
     def __init__(self, radius):
         self.radius = radius
-    
+
     def area(self):
-        return 3.14159 * self.radius ** 2
-    
+        return 3.14159 * self.radius**2
+
     def perimeter(self):
         return 2 * 3.14159 * self.radius
 
 
 class Triangle(Shape):
     """Triangle implementation"""
-    
+
     def __init__(self, a, b, c):
         self.a = a
         self.b = b
         self.c = c
-    
+
     def area(self):
         # Heron's formula
         s = (self.a + self.b + self.c) / 2
         return (s * (s - self.a) * (s - self.b) * (s - self.c)) ** 0.5
-    
+
     def perimeter(self):
         return self.a + self.b + self.c
 
@@ -768,17 +768,14 @@ class Triangle(Shape):
 print("📐 Shapes Example (Polymorphism):")
 print()
 
-shapes = [
-    Rectangle(5, 10),
-    Circle(7),
-    Triangle(3, 4, 5)
-]
+shapes = [Rectangle(5, 10), Circle(7), Triangle(3, 4, 5)]
 
 # Same interface, different implementations
 for shape in shapes:
     print(f"  {shape.describe()}")
 
 print()
+
 
 # Calculate total area (works with any shape!)
 def calculate_total_area(shape_list):
@@ -865,24 +862,5 @@ print(
   • Implement interfaces with ABC
   • Explore more special methods
   • Study design patterns (Factory, Singleton, etc.)
-"""
-)
-   • Product, Customer classes
-   • Shopping cart system
-
-🎯 WHY USE OOP?
-  ✓ Code organization
-  ✓ Reusability (DRY)
-  ✓ Maintainability
-  ✓ Modeling real-world entities
-  ✓ Encapsulation & data hiding
-
-🚀 NEXT STEPS:
-  • Practice creating your own classes
-  • Model real-world objects
-  • Use inheritance for related classes
-  • Explore more special methods
-  • Learn about polymorphism
-  • Study design patterns
 """
 )
