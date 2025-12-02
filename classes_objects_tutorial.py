@@ -854,13 +854,5 @@ print(
   ✓ Modeling real-world entities
   ✓ Encapsulation & data hiding
   ✓ Polymorphism & flexibility
-
-🚀 NEXT STEPS:
-  • Practice creating your own classes
-  • Model real-world objects
-  • Use inheritance for related classes
-  • Implement interfaces with ABC
-  • Explore more special methods
-  • Study design patterns (Factory, Singleton, etc.)
 """
 )
