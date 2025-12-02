@@ -64,14 +64,14 @@ jobs:
           echo "GITHUB_RUN_ID=$GITHUB_RUN_ID"
           echo "RUNNER_OS=$RUNNER_OS"
 
-      - name: Optional lint (flake8)
+      - name: Run tests (pytest)
         shell: bash
         run: |
-          if command -v flake8 >/dev/null 2>&1; then
-            echo "Running flake8..."
-            flake8 .
+          set -euo pipefail
+          if ls tests/*.py >/dev/null 2>&1; then
+            pytest -q
           else
-            echo "flake8 not installed -- skipping lint"
+            echo "No tests found; skipping pytest"
           fi
 
       - name: Run session scripts (with timeout to avoid hangs)
